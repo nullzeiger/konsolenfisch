@@ -29,6 +29,7 @@
 *.dylib
 
 # Executables
+src/konsolenfisch
 *.exe
 *.out
 *.app
