@@ -28,13 +28,50 @@
  */
 
 #include <stdio.h>
+#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
+#include "terminal.h"
 #include "luascript.h"
-#include "info.h"
 
-int main(void)
+// Funzione C che verrà chiamata da Lua
+static int l_hello(lua_State *L)
 {
-    t_hello_world();
-    printf("%s\n", package());
-
+    (void)L;
+    printf("%s\n", hello_world());
     return 0;
 }
+
+static lua_State *init(void)
+{
+    // 1. Crea un nuovo stato Lua
+    lua_State *L = luaL_newstate();
+
+    if (L == NULL) {
+        fprintf(stderr, "Errore nell'inizializzazione di Lua\n");
+        return NULL;
+    }
+
+    // 2. Apri le librerie standard di Lua
+    luaL_openlibs(L);
+
+    return L;
+}
+
+int t_hello_world(void)
+{
+    lua_State *L = init();
+    // Registra la funzione "hello"
+    lua_pushcfunction(L, l_hello);
+    lua_setglobal(L, "hello");
+
+    if (luaL_dofile(L, "script.lua") != LUA_OK) {
+        fprintf(stderr, "Errore durante l'esecuzione dello script Lua: %s\n", lua_tostring(L, -1));
+        lua_close(L);
+        return 1;
+    }
+
+    lua_close(L);
+    return 0;
+}
+

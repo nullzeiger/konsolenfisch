@@ -1,6 +1,5 @@
-# Source code Makefile
-#
-# Copyright (c) 2025 Ivan Guerreschi.
+# Copyright (c) 2025 Ivan Guerreschi <ivan.guerreschi.dev@gmail.com>
+# All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -28,12 +27,17 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+# Phony targets
+.PHONY: all clean
+
 # Compiler and flags
 CC = gcc
-CFLAGS = -O2 -ggdb -Wall -Wextra
+CFLAGS = -Wall -Wextra -O2 -ggdb
+LDLIBS = -L../deps/lua/src -l:liblua.a -lm
+LDFLAGS = -I../deps/lua/src -L../deps/lua/src -l:liblua.a
 
 # Source files
-SRCS = konsolenfisch.c
+SRCS = info.c luascript.c konsolenfisch.c terminal.c
 
 # Object files
 OBJS = $(SRCS:.c=.o)
@@ -49,11 +53,11 @@ all: $(TARGET)
 
 # Link the program
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
 
 # Compile object files
-konsolenfisch.o: konsolenfisch.c
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(LDFLAGS)
 
 # Install target (optional)
 install: $(TARGET)
@@ -68,5 +72,3 @@ uninstall: $(TARGET)
 clean:
 	rm -f $(OBJS) $(TARGET)
 
-# Phony targets
-.PHONY: all clean

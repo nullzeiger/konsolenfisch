@@ -27,14 +27,23 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <stdio.h>
-#include "luascript.h"
-#include "info.h"
+#ifndef INFO_H
+#define INFO_H
 
-int main(void)
-{
-    t_hello_world();
-    printf("%s\n", package());
+/* Define constants for info. */
+#define VERSION "0.1"
+#define PACKAGE_BUGREPORT "ivan.guerreschi.dev@gmail.com github.com/nullzeiger/konsolenfisch/issue"
+#define PACKAGE_STRING "konsolenfisch version 0.1"
 
-    return 0;
-}
+/* Returns the version string of the konsolenfisch package. */
+const char *version(void);
+/* Returns the package name of the konsolenfisch package. */
+const char *package(void);
+/* Returns the bug report address for the konsolenfisch package. */
+const char *bugreport(void);
+/* Returns the license information for the konsolenfisch package. */
+const char *license(void);
+/* Returns the help text for the konsolenfisch package. */
+const char *help(void);
+
+#endif

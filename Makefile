@@ -1,6 +1,5 @@
-# Root Makefile
-#
-# Copyright (c) 2025 Ivan Guerreschi.
+# Copyright (c) 2025 Ivan Guerreschi <ivan.guerreschi.dev@gmail.com>
+# All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -28,13 +27,19 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-.PHONY: all src clean
+.PHONY: all src deps clean
 
-all: 
+all:
+	$(MAKE) deps
 	$(MAKE) src
 
+# Compile konsolenfisch
 src:
 	$(MAKE) -C src
+
+# Compile Lua
+deps:
+	$(MAKE) -C deps/lua
 
 install:
 	$(MAKE) -C src install
@@ -45,7 +50,8 @@ uninstall:
 help:
 	@echo "konsolenfisch Project Makefile Commands:"
 	@echo "  all       - Build entire project (default)"
-	@echo "  src       - Build source files"
+	@echo "  src       - Build konsolenfisch source files"
+	@echo "  deps      - Build Lua source files"
 	@echo "  install   - Install executable to ~/.local/bin"
 	@echo "  uninstall - Remove executable from ~/.local/bin"
 	@echo "  clean     - Remove all build artifacts"

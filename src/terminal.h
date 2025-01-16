@@ -27,14 +27,9 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <stdio.h>
-#include "luascript.h"
-#include "info.h"
+#ifndef TERMINAL_H
+#define TERMINAL_H
 
-int main(void)
-{
-    t_hello_world();
-    printf("%s\n", package());
+const char *hello_world(void);
 
-    return 0;
-}
+#endif
