@@ -15,11 +15,10 @@ CFLAGS = -Wall -Wextra -O2 -ggdb -Werror -Wformat=2 \
 		 -Wunused -Wmissing-prototypes -Wstrict-prototypes \
 		 -Wcast-qual -Wnull-dereference -Wduplicated-cond
 LDLIBS = -L../deps/lua/src -l:liblua.a -lm
-LDFLAGS = -I../deps/lua/src -L../deps/lua/src -l:liblua.a
+LDFLAGS = -I../deps/lua/src -l:liblua.a
 
 # Source files
-SRCS = info.c luascript.c konsolenfisch.c terminal.c user_input.c
-
+SRCS = $(wildcard *.c)
 # Object files
 OBJS = $(SRCS:.c=.o)
 
