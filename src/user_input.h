@@ -1,4 +1,4 @@
-/* File header: luascript.h
+/* File header: user_input.h
  *
  * Copyright (c) 2025 Ivan Guerreschi <ivan.guerreschi.dev@gmail.com>
  * All rights reserved.
@@ -7,12 +7,10 @@
  * license that can be found in the LICENSE file.
  */
 
-#ifndef LUASCRIPT_H
-#define LUASCRIPT_H
+#ifndef USER_INPUT_H
+#define USER_INPUT_H
 
-int load_lua_script(const char *scriptname);
-int t_fish_r(void);
-int t_fish_l(void);
-int t_fish_d(void);
+/* Parse the command-line arguments provided to the program.  */
+int parsing (int argc, char **argv);
 
-#endif
+#endif /* USER_INPUT_H */

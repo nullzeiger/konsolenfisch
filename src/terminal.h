@@ -1,35 +1,26 @@
-/* Copyright (c) 2025 Ivan Guerreschi <ivan.guerreschi.dev@gmail.com>
+/* File header: terminal.h
+ *
+ * Copyright (c) 2025 Ivan Guerreschi <ivan.guerreschi.dev@gmail.com>
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the <nome del detentore del copyright> nor the names
- *    of its contributors may be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY <nome del detentore del copyright> AND
- * CONTRIBUTORS ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
- * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- * IN NO EVENT SHALL <nome del detentore del copyright> OR CONTRIBUTORS
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
- * THE POSSIBILITY OF SUCH DAMAGE.
+ * Use of this source code is governed by a BSD-style
+ * license that can be found in the LICENSE file.
  */
 
+/* This header file defines function prototypes related to fish and terminal output. */
 #ifndef TERMINAL_H
 #define TERMINAL_H
 
-const char *hello_world(void);
+/* Returns a greeting string including a fish name. */
+const char *hello_fish(void);
 
-#endif
+/* Returns the string representation of a fish facing right. */
+const char *fish_r(void);
+
+/* Returns the string representation of a fish facing left. */
+const char *fish_l(void);
+
+/* Returns the string representation of a fish facing down. */
+const char *fish_d(void);
+
+#endif /* TERMINAL_H */

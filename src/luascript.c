@@ -1,30 +1,9 @@
-/* Copyright (c) 2025 Ivan Guerreschi <ivan.guerreschi.dev@gmail.com>
+/* File: luascript.c
+ * Copyright (c) 2025 Ivan Guerreschi <ivan.guerreschi.dev@gmail.com>
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the <nome del detentore del copyright> nor the names
- *    of its contributors may be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY <nome del detentore del copyright> AND
- * CONTRIBUTORS ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
- * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- * IN NO EVENT SHALL <nome del detentore del copyright> OR CONTRIBUTORS
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
- * THE POSSIBILITY OF SUCH DAMAGE.
+ * Use of this source code is governed by a BSD-style
+ * license that can be found in the LICENSE file.
  */
 
 #include <stdio.h>
@@ -34,44 +13,75 @@
 #include "terminal.h"
 #include "luascript.h"
 
-// Funzione C che verrà chiamata da Lua
+/* C function exposed to Lua as "hello". */
 static int l_hello(lua_State *L)
 {
+    /* (void)L; silences the compiler warning for the unused L variable. */
     (void)L;
-    printf("%s\n", hello_world());
+
+    /* Calls the C function hello_fish with the argument "Gold"
+     * and prints the result. */
+    printf("%s\n", hello_fish());
     return 0;
 }
 
+/* C function that is exposed to Lua as "fishl." */
+static int l_fish_l(lua_State *L)
+{
+    (void)L;
+    /* Calls the C function fish_l and prints the result. */
+    printf("%s\n", fish_l());
+    return 0;
+}
+
+/* Function to initialize the Lua interpreter. */
 static lua_State *init(void)
 {
-    // 1. Crea un nuovo stato Lua
+    /* Creates a new Lua state. */
     lua_State *L = luaL_newstate();
 
     if (L == NULL) {
-        fprintf(stderr, "Errore nell'inizializzazione di Lua\n");
+        fprintf(stderr, "Lua initialization error\n");
         return NULL;
     }
 
-    // 2. Apri le librerie standard di Lua
+    /* Opens the standard Lua libraries. */
     luaL_openlibs(L);
 
     return L;
 }
 
-int t_hello_world(void)
+/* Function to register the C functions in Lua. */
+static void register_functions(lua_State *L)
 {
-    lua_State *L = init();
-    // Registra la funzione "hello"
+    /* Pushing the C function onto the Lua stack */
+    /* Assigning the global name (for example "hello") to the function */
     lua_pushcfunction(L, l_hello);
     lua_setglobal(L, "hello");
+    lua_pushcfunction(L, l_fish_l);
+    lua_setglobal(L, "fishl");
+}
 
-    if (luaL_dofile(L, "script.lua") != LUA_OK) {
-        fprintf(stderr, "Errore durante l'esecuzione dello script Lua: %s\n", lua_tostring(L, -1));
+/* Main function to load and execute the Lua script. */
+int load_lua_script(const char *scriptname)
+{
+    /* Initializes the Lua interpreter. */
+    lua_State *L = init();
+    if (L == NULL)
+        return 1;
+
+    /* Registers the C functions. */
+    register_functions(L);
+
+    /* Loads and executes the Lua script. */
+    if (luaL_dofile(L, scriptname) != LUA_OK) {
+        fprintf(stderr, "Error while executing Lua script: %s\n", lua_tostring(L, -1));
         lua_close(L);
         return 1;
     }
 
+    /* Closes the Lua state. */
     lua_close(L);
+
     return 0;
 }
-

@@ -16,7 +16,6 @@ This project is a simple simulation of a goldfish living in your terminal.
 
 *   A terminal that supports ANSI escape codes (most modern terminals do).
 *   A GCC compiler and Make.
-*   A lua language. For example in Ubuntu sudo apt install lua-dev, for Fedora sudo dnf install lua-devel.
 
 ### Compile
 
@@ -32,7 +31,7 @@ make install
 
 ### Usage
 
-Simply run the executable `konsolenfisch`. The konsolenfisch will start swimming in your terminal. To stop the simulation, press `Ctrl+C`.
+Simply run the executable `konsolenfisch -l example\script.lua`. The konsolenfisch will start swimming in your terminal. To stop the simulation, press `Ctrl+C`.
 
 ## Author
 
