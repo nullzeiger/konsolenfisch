@@ -12,13 +12,13 @@
 #ifndef FISH_H
 #define FISH_H
 
-/* Macro FISR: Represents a fish facing right. */
+/* Macro FISR Represents a fish facing right. */
 #define FISR "><>˚>"
 
-/* Macro FISHL: Represents a fish facing left. */
+/* Macro FISHL Represents a fish facing left. */
 #define FISHL "<˚<><"
 
-/* Macro FISHD: Represents a fish facing dead. */
+/* Macro FISHD Represents a fish facing dead. */
 #define FISHD "--v--"
 
 #endif /* FISH_H */

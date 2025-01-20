@@ -11,8 +11,5 @@
 #define LUASCRIPT_H
 
 int load_lua_script(const char *scriptname);
-int t_fish_r(void);
-int t_fish_l(void);
-int t_fish_d(void);
 
 #endif

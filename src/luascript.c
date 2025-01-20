@@ -10,27 +10,145 @@
 #include <lua.h>
 #include <lualib.h>
 #include <lauxlib.h>
-#include "terminal.h"
+#include "colors.h"
+#include "info.h"
 #include "luascript.h"
+#include "terminal.h"
 
 /* C function exposed to Lua as "hello". */
 static int l_hello(lua_State *L)
 {
-    /* (void)L; silences the compiler warning for the unused L variable. */
-    (void)L;
+    /* Check if an argument was passed */
+    if (lua_gettop(L) != 1) {
+        return luaL_error(L, "Expected 1 argument (color)");
+    }
 
-    /* Calls the C function hello_fish with the argument "Gold"
-     * and prints the result. */
-    printf("%s\n", hello_fish());
+    /* Check if the argument is a string */
+    if (lua_type(L, 1) != LUA_TSTRING) {
+        return luaL_error(L, "Argument must be a string");
+    }
+
+    /* Get the string argument */
+    const char *color = lua_tostring(L, 1);
+
+    /* Convert string to macro */
+    const char *ansi_color = convert_color_to_ansi(color);
+
+    /* Calls the C function hello_fish and prints the result. */
+    printf("%s%s%s\n", ansi_color, hello_fish(), RESET);
+    return 0;
+}
+
+/* C function exposed to Lua as "version". */
+static int l_version(lua_State *L __attribute__((unused)))
+{
+    /* Calls the C function hello_fish and prints the result. */
+    printf("%s\n", version());
+    return 0;
+}
+
+/* C function exposed to Lua as "package". */
+static int l_package(lua_State *L __attribute__((unused)))
+{
+    /* Calls the C function package and prints the result. */
+    printf("%s\n", package());
+    return 0;
+}
+
+
+/* C function exposed to Lua as "bugreport". */
+static int l_bugreport(lua_State *L __attribute__((unused)))
+{
+    /* Calls the C function bugreport and prints the result. */
+    printf("%s\n", bugreport());
+    return 0;
+}
+
+/* C function exposed to Lua as "license". */
+static int l_license(lua_State *L __attribute__((unused)))
+{
+    /* Calls the C function license and prints the result. */
+    printf("%s\n", license());
+    return 0;
+}
+
+/* C function exposed to Lua as "help". */
+static int l_help(lua_State *L __attribute__((unused)))
+{
+    /* Calls the C function help and prints the result. */
+    printf("%s\n", help());
     return 0;
 }
 
 /* C function that is exposed to Lua as "fishl." */
-static int l_fish_l(lua_State *L)
+static int l_fishl(lua_State *L)
 {
-    (void)L;
+    /* Check if an argument was passed */
+    if (lua_gettop(L) != 1) {
+        return luaL_error(L, "Expected 1 argument (color)");
+    }
+
+    /* Check if the argument is a string */
+    if (lua_type(L, 1) != LUA_TSTRING) {
+        return luaL_error(L, "Argument must be a string");
+    }
+
+    /* Get the string argument */
+    const char *color = lua_tostring(L, 1);
+
+    /* Convert string to macro */
+    const char *ansi_color = convert_color_to_ansi(color);
+
     /* Calls the C function fish_l and prints the result. */
-    printf("%s\n", fish_l());
+    printf("%s%s%s\n", ansi_color, fish_l(), RESET);
+    return 0;
+}
+
+/* C function that is exposed to Lua as "fishr." */
+static int l_fishr(lua_State *L)
+{
+    /* Check if an argument was passed */
+    if (lua_gettop(L) != 1) {
+        return luaL_error(L, "Expected 1 argument (color)");
+    }
+
+    /* Check if the argument is a string */
+    if (lua_type(L, 1) != LUA_TSTRING) {
+        return luaL_error(L, "Argument must be a string");
+    }
+
+    /* Get the string argument */
+    const char *color = lua_tostring(L, 1);
+
+    /* Convert string to macro */
+    const char *ansi_color = convert_color_to_ansi(color);
+
+    /* Calls the C function fish_r and prints the result. */
+    printf("%s%s%s\n", ansi_color, fish_r(), RESET);
+    return 0;
+}
+
+/* C function that is exposed to Lua as "fishd." */
+static int l_fishd(lua_State *L)
+{
+    /* Check if an argument was passed */
+    if (lua_gettop(L) != 1) {
+        return luaL_error(L, "Expected 1 argument (color)");
+    }
+
+    /* Check if the argument is a string */
+    if (lua_type(L, 1) != LUA_TSTRING) {
+        return luaL_error(L, "Argument must be a string");
+    }
+
+    /* Get the string argument */
+    const char *color = lua_tostring(L, 1);
+
+    /* Convert string to macro */
+    const char *ansi_color = convert_color_to_ansi(color);
+
+    /* Calls the C function fish_d and prints the result. */
+    printf("%s%s%s\n", ansi_color, fish_d(), RESET);
     return 0;
 }
 
@@ -58,8 +176,23 @@ static void register_functions(lua_State *L)
     /* Assigning the global name (for example "hello") to the function */
     lua_pushcfunction(L, l_hello);
     lua_setglobal(L, "hello");
-    lua_pushcfunction(L, l_fish_l);
+    lua_pushcfunction(L, l_version);
+    lua_setglobal(L, "version");
+    lua_pushcfunction(L, l_package);
+    lua_setglobal(L, "package");
+    lua_pushcfunction(L, l_bugreport);
+    lua_setglobal(L, "bugreport");
+    lua_pushcfunction(L, l_license);
+    lua_setglobal(L, "license");
+    lua_pushcfunction(L, l_help);
+    lua_setglobal(L, "help");
+    lua_pushcfunction(L, l_fishl);
     lua_setglobal(L, "fishl");
+    lua_pushcfunction(L, l_fishl);
+    lua_setglobal(L, "fishr");
+    lua_pushcfunction(L, l_fishr);
+    lua_setglobal(L, "fishd");
+    lua_pushcfunction(L, l_fishd);
 }
 
 /* Main function to load and execute the Lua script. */

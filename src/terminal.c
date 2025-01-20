@@ -12,7 +12,7 @@
 #include "terminal.h"
 
 /* Returns a greeting string including a fish name. */
-const char *hello_fish(void)
+const char *hello_fish()
 {
     const char *fish_name[5] = {"Goldie", "Finny", "Bubbles", "Sunny", "Splash"};
     srand(time(NULL));
