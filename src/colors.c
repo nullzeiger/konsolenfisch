@@ -29,7 +29,7 @@ const char* convert_color_to_ansi(const char *color) {
      * Continues until it finds an element with a name equal to NULL.
      * Increments the pointer to move to the next element in the structure. */
     for (const struct color_map *cm = colors; cm->name != NULL; cm++) {
-        if (strcmp(color, cm->name) == 0) {
+        if (strncasecmp(color, cm->name, strlen(cm->name)) == 0) {
             return cm->code;
         }
     }
