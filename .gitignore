@@ -30,8 +30,8 @@
 
 # Executables
 src/konsolenfisch
-deps/lua/src/lua
-deps/lua/src/luac
+lua/src/lua
+lua/src/luac
 *.exe
 *.out
 *.app

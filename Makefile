@@ -18,7 +18,7 @@ src:
 
 # Compile Lua
 deps:
-	$(MAKE) -C deps/lua
+	$(MAKE) -C lua
 
 install:
 	$(MAKE) -C src install

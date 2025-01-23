@@ -14,8 +14,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -O2 -ggdb -Werror -Wformat=2 \
 		 -Wunused -Wmissing-prototypes -Wstrict-prototypes \
 		 -Wcast-qual -Wnull-dereference -Wduplicated-cond
-LDLIBS = -L../deps/lua/src -l:liblua.a -lm
-LDFLAGS = -I../deps/lua/src -l:liblua.a
+LDLIBS = -L../lua/src -l:liblua.a -lm
+LDFLAGS = -I../lua/src -l:liblua.a
 
 # Source files
 SRCS = $(wildcard *.c)
