@@ -6,11 +6,15 @@
  * license that can be found in the LICENSE file.
  */
 
-#include <stdio.h>
 #include <lua.h>
 #include <lualib.h>
 #include <lauxlib.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
 #include "colors.h"
+#include "entity.h"
 #include "info.h"
 #include "luascript.h"
 #include "terminal.h"
@@ -36,6 +40,7 @@ static int l_hello(lua_State *L)
 
     /* Calls the C function hello_fish and prints the result. */
     printf("%s%s%s\n", ansi_color, hello_fish(), RESET);
+
     return 0;
 }
 
@@ -44,6 +49,7 @@ static int l_version(lua_State *L __attribute__((unused)))
 {
     /* Calls the C function hello_fish and prints the result. */
     printf("%s\n", version());
+
     return 0;
 }
 
@@ -52,6 +58,7 @@ static int l_package(lua_State *L __attribute__((unused)))
 {
     /* Calls the C function package and prints the result. */
     printf("%s\n", package());
+
     return 0;
 }
 
@@ -61,6 +68,7 @@ static int l_bugreport(lua_State *L __attribute__((unused)))
 {
     /* Calls the C function bugreport and prints the result. */
     printf("%s\n", bugreport());
+
     return 0;
 }
 
@@ -69,6 +77,7 @@ static int l_license(lua_State *L __attribute__((unused)))
 {
     /* Calls the C function license and prints the result. */
     printf("%s\n", license());
+
     return 0;
 }
 
@@ -77,6 +86,7 @@ static int l_help(lua_State *L __attribute__((unused)))
 {
     /* Calls the C function help and prints the result. */
     printf("%s\n", help());
+
     return 0;
 }
 
@@ -100,7 +110,8 @@ static int l_fishl(lua_State *L)
     const char *ansi_color = convert_color_to_ansi(color);
 
     /* Calls the C function fish_l and prints the result. */
-    printf("%s%s%s\n", ansi_color, fish_l(), RESET);
+    printf("%s%c%s\n", ansi_color, fish_l(), RESET);
+
     return 0;
 }
 
@@ -124,31 +135,49 @@ static int l_fishr(lua_State *L)
     const char *ansi_color = convert_color_to_ansi(color);
 
     /* Calls the C function fish_r and prints the result. */
-    printf("%s%s%s\n", ansi_color, fish_r(), RESET);
+    printf("%s%c%s\n", ansi_color, fish_r(), RESET);
+
     return 0;
 }
 
-/* C function that is exposed to Lua as "fishd." */
-static int l_fishd(lua_State *L)
+static int l_print_acquarium(lua_State *l)
 {
     /* Check if an argument was passed */
-    if (lua_gettop(L) != 1) {
-        return luaL_error(L, "Expected 1 argument (color)");
+    if (lua_gettop(l) != 1) {
+        return luaL_error(l, "Expected 1 argument (color)");
     }
 
     /* Check if the argument is a string */
-    if (lua_type(L, 1) != LUA_TSTRING) {
-        return luaL_error(L, "Argument must be a string");
+    if (lua_type(l, 1) != LUA_TSTRING) {
+        return luaL_error(l, "Argument must be a string");
     }
 
     /* Get the string argument */
-    const char *color = lua_tostring(L, 1);
+    const char *color = lua_tostring(l, 1);
 
     /* Convert string to macro */
     const char *ansi_color = convert_color_to_ansi(color);
 
-    /* Calls the C function fish_d and prints the result. */
-    printf("%s%s%s\n", ansi_color, fish_d(), RESET);
+    struct Fish fish = { FISHR, 0, 0, R };
+    char *acquarium = create_acquarium();
+    time_t start_time = time(NULL);
+
+    while (time(NULL) - start_time < 80) {
+        print_acquarium(acquarium, ansi_color, fish);
+        sleep(1);
+        fish.x++;
+        if (fish.x > 9) {
+            fish.x = 0;
+            fish.y++;
+        }
+
+        if (fish.x == 7 && fish.y == 9)
+            break;
+
+    }
+
+    free(acquarium);
+
     return 0;
 }
 
@@ -158,7 +187,7 @@ static lua_State *init(void)
     /* Creates a new Lua state. */
     lua_State *L = luaL_newstate();
 
-    if (L == NULL) {
+    if (NULL == L) {
         fprintf(stderr, "Lua initialization error\n");
         return NULL;
     }
@@ -188,11 +217,10 @@ static void register_functions(lua_State *L)
     lua_setglobal(L, "help");
     lua_pushcfunction(L, l_fishl);
     lua_setglobal(L, "fishl");
-    lua_pushcfunction(L, l_fishl);
-    lua_setglobal(L, "fishr");
     lua_pushcfunction(L, l_fishr);
-    lua_setglobal(L, "fishd");
-    lua_pushcfunction(L, l_fishd);
+    lua_setglobal(L, "fishr");
+    lua_pushcfunction(L, l_print_acquarium);
+    lua_setglobal(L, "acquarium");
 }
 
 /* Main function to load and execute the Lua script. */
@@ -200,7 +228,7 @@ int load_lua_script(const char *scriptname)
 {
     /* Initializes the Lua interpreter. */
     lua_State *L = init();
-    if (L == NULL)
+    if (NULL == L)
         return 1;
 
     /* Registers the C functions. */

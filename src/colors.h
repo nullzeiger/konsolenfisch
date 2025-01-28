@@ -22,8 +22,21 @@
 #define CYAN        "\x1b[36m"
 #define WHITE       "\x1b[37m"
 
-/*Resets all attributes */
+/* Background color codes */
+#define BG_BLACK    "\x1b[40m"
+#define BG_RED      "\x1b[41m"
+#define BG_GREEN    "\x1b[42m"
+#define BG_YELLOW   "\x1b[43m"
+#define BG_BLUE     "\x1b[44m"
+#define BG_MAGENTA  "\x1b[45m"
+#define BG_CYAN     "\x1b[46m"
+#define BG_WHITE    "\x1b[47m"
+
+/* Resets all attributes */
 #define RESET       "\x1b[0m"
+
+/* Clear terminal */
+#define CLEAR       "\033[2J\033[H"
 
 /* Associating a name with a color code */
 struct color_map {

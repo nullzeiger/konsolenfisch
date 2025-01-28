@@ -13,6 +13,7 @@
 #include "luascript.h"
 #include "info.h"
 #include "user_input.h"
+#include "terminal.h"
 
 /* This function is responsible for parsing the command-line
  * arguments provided to the program. */

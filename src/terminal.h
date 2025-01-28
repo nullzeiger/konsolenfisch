@@ -11,16 +11,21 @@
 #ifndef TERMINAL_H
 #define TERMINAL_H
 
+#include "entity.h"
+
 /* Returns a greeting string including a fish name. */
 const char *hello_fish(void);
 
 /* Returns the string representation of a fish facing right. */
-const char *fish_r(void);
+char fish_r(void);
 
 /* Returns the string representation of a fish facing left. */
-const char *fish_l(void);
+char fish_l(void);
 
-/* Returns the string representation of a fish facing down. */
-const char *fish_d(void);
+/* Create acquarium */
+char *create_acquarium(void);
+
+/* Print acquarium */
+void print_acquarium(char *acquarium, const char *, struct Fish);
 
 #endif /* TERMINAL_H */
