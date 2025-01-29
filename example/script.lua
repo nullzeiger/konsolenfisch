@@ -1,1 +1,1 @@
-acquarium("GREEN")
+aquarium("GREEN")

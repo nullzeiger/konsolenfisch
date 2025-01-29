@@ -13,7 +13,8 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -O2 -ggdb -Werror -Wformat=2 \
 		 -Wunused -Wmissing-prototypes -Wstrict-prototypes \
-		 -Wcast-qual -Wnull-dereference -Wduplicated-cond
+		 -Wcast-qual -Wnull-dereference -Wduplicated-cond \
+		 -fdiagnostics-color=always
 LDLIBS = -L../lua/src -l:liblua.a -lm
 LDFLAGS = -I../lua/src -l:liblua.a
 

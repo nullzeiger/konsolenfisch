@@ -35,6 +35,7 @@ enum FishDir {
 
 struct Fish {
     char fish_entity;
+    const char *name;
     int x;
     int y;
     enum FishDir fish_dir;

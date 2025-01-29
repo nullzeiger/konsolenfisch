@@ -157,8 +157,8 @@ static int l_print_aquarium(lua_State *l)
 
     /* Convert string to macro */
     const char *ansi_color = convert_color_to_ansi(color);
-
-    struct Fish fish = { FISHR, 0, 0, R };
+    const char *name = hello_fish();
+    struct Fish fish = { FISHR, name, 0, 0, R };
     char *aquarium = create_aquarium();
     time_t start_time = time(NULL);
 

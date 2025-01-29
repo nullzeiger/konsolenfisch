@@ -55,7 +55,6 @@ char *create_aquarium(void)
         }
     }
 
-
     return aquarium;
 }
 
@@ -68,6 +67,8 @@ void print_aquarium(char *aquarium, const char *color, struct Fish fish)
     } else {
         fprintf(stderr, "Output is not a terminal. Skipping clear screen.\n");
     }
+
+    printf("%s\n", fish.name);
 
     aquarium[fish.y * ROWS + fish.x] = fish.fish_entity;
 
