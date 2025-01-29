@@ -22,10 +22,10 @@ char fish_r(void);
 /* Returns the string representation of a fish facing left. */
 char fish_l(void);
 
-/* Create acquarium */
-char *create_acquarium(void);
+/* Create aquarium */
+char *create_aquarium(void);
 
-/* Print acquarium */
-void print_acquarium(char *acquarium, const char *, struct Fish);
+/* Print aquarium */
+void print_aquarium(char *aquarium, const char *, struct Fish);
 
 #endif /* TERMINAL_H */

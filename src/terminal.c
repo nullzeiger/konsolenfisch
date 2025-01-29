@@ -40,25 +40,27 @@ char fish_l(void)
     return FISHL;
 }
 
-char *create_acquarium()
+/* Return the matrix of char representation aquarium. */
+char *create_aquarium(void)
 {
-    char *acquarium = malloc(ROWS * COLS * sizeof(char));
+    char *aquarium = malloc(ROWS * COLS * sizeof(char));
 
-    if (acquarium == NULL) {
+    if (aquarium == NULL) {
         return NULL;
     }
 
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
-            acquarium[i * ROWS + j] = WATER;
+            aquarium[i * ROWS + j] = WATER;
         }
     }
 
 
-    return acquarium;
+    return aquarium;
 }
 
-void print_acquarium(char *acquarium, const char *color, struct Fish fish)
+/* Print and update state of fish. */
+void print_aquarium(char *aquarium, const char *color, struct Fish fish)
 {
     if (isatty(STDOUT_FILENO)) {
         printf(CLEAR);
@@ -67,20 +69,20 @@ void print_acquarium(char *acquarium, const char *color, struct Fish fish)
         fprintf(stderr, "Output is not a terminal. Skipping clear screen.\n");
     }
 
-    acquarium[fish.y * ROWS + fish.x] = fish.fish_entity;
+    aquarium[fish.y * ROWS + fish.x] = fish.fish_entity;
 
     for (int i = 0; i < ROWS - 2; i++) {
         for (int j = 0; j < COLS; j++) {
             if (fish.y == i && fish.x == j)
-                printf("%s%c%s", RED, acquarium[i * ROWS + j], RESET);
+                printf("%s%c%s", RED, aquarium[i * ROWS + j], RESET);
             else
-                printf("%s%c%s", BLUE, acquarium[i * ROWS + j], RESET);
+                printf("%s%c%s", BLUE, aquarium[i * ROWS + j], RESET);
         }
 
         printf("\n");
     }
 
-    acquarium[fish.y * ROWS + fish.x] = WATER;
+    aquarium[fish.y * ROWS + fish.x] = WATER;
 
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < COLS; j++) {
