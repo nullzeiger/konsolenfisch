@@ -1,11 +1,19 @@
-/* File: konsolenfisch.c
- *
- * Copyright (c) 2025 Ivan Guerreschi <ivan.guerreschi.dev@gmail.com>
- * All rights reserved.
- *
- * Use of this source code is governed by a BSD-style
- * license that can be found in the LICENSE file.
- */
+/* konsolenfisch.c
+
+   Copyright (C) 2025 Ivan Guerreschi.
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 #include <stdio.h>
 #include "luascript.h"
@@ -14,9 +22,10 @@
 
 /* Main function of the program.
  * Parsing input user. */
-int main(int argc, char *argv[])
+int
+main (int argc, char *argv[])
 {
-    parsing(argc, argv);
+  parsing (argc, argv);
 
-    return 0;
+  return 0;
 }

@@ -1,14 +1,20 @@
-/* File header: colors.h
- *
- * Copyright (c) 2025 Ivan Guerreschi <ivan.guerreschi.dev@gmail.com>
- * All rights reserved.
- *
- * Use of this source code is governed by a BSD-style
- * license that can be found in the LICENSE file.
- */
+/* colors.h
+   
+   Copyright (C) 2025 Ivan Guerreschi.
 
-/* This header file defines ANSI escape codes for controlling
- * text colors in a terminal. */
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
+   
 #ifndef COLORS_H
 #define COLORS_H
 
@@ -39,12 +45,13 @@
 #define CLEAR       "\033[2J\033[H"
 
 /* Associating a name with a color code */
-struct color_map {
-    const char *name;
-    const char *code;
+struct color_map
+{
+  const char *name;
+  const char *code;
 };
 
 /* Convert color to ansi macro */
-const char* convert_color_to_ansi(const char *color);
+const char *convert_color_to_ansi (const char *color);
 
 #endif /* COLORS_H */

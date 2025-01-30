@@ -1,11 +1,19 @@
-/* File header: info.h
- *
- * Copyright (c) 2025 Ivan Guerreschi <ivan.guerreschi.dev@gmail.com>
- * All rights reserved.
- *
- * Use of this source code is governed by a BSD-style
- * license that can be found in the LICENSE file.
- */
+/* info.h
+ 
+   Copyright (C) 2025 Ivan Guerreschi.
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */ 
 
 #ifndef INFO_H
 #define INFO_H
@@ -16,18 +24,18 @@
 #define PACKAGE_STRING "konsolenfisch version 0.1"
 
 /* Returns the version string of the konsolenfisch package. */
-const char *version(void);
+const char *version (void);
 
 /* Returns the package name of the konsolenfisch package. */
-const char *package(void);
+const char *package (void);
 
 /* Returns the bug report address for the konsolenfisch package. */
-const char *bugreport(void);
+const char *bugreport (void);
 
 /* Returns the license information for the konsolenfisch package. */
-const char *license(void);
+const char *license (void);
 
 /* Returns the help text for the konsolenfisch package. */
-const char *help(void);
+const char *help (void);
 
 #endif /* INFO_H */

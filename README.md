@@ -38,7 +38,7 @@ Simply run the executable `konsolenfisch -l example\script.lua`. The konsolenfis
 Ivan Guerreschi [GitHub](https://github.com/nullzeiger)
 
 ## License
-This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
