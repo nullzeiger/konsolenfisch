@@ -1,5 +1,5 @@
 /* terminal.c
-   
+
    Copyright (C) 2025 Ivan Guerreschi.
 
    This program is free software: you can redistribute it and/or modify
@@ -14,7 +14,7 @@
 
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
-   
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -29,6 +29,7 @@ hello_fish ()
 {
   const char *fish_name[5] =
     { "Goldie", "Finny", "Bubbles", "Sunny", "Splash" };
+
   srand (time (NULL));
   /* Generate a random number between 0 and 4 (inclusive) */
   int random_number = rand () % 5;

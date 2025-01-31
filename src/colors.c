@@ -1,5 +1,5 @@
 /* colors.c
- 
+
    Copyright (C) 2025 Ivan Guerreschi.
 
    This program is free software: you can redistribute it and/or modify

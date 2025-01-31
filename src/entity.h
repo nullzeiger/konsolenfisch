@@ -14,7 +14,7 @@
 
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
- 
+
 /* This header file defines macros to graphically represent
  * a fish in different directions. */
 #ifndef ENTITY_H
