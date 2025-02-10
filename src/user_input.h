@@ -19,6 +19,6 @@
 #define USER_INPUT_H
 
 /* Parse the command-line arguments provided to the program.  */
-int parsing (int argc, char **argv);
+int parsing(int argc, char **argv);
 
 #endif /* USER_INPUT_H */

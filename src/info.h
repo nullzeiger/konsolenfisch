@@ -24,18 +24,18 @@
 #define PACKAGE_STRING "konsolenfisch version 0.1"
 
 /* Returns the version string of the konsolenfisch package. */
-const char *version (void);
+const char *version(void);
 
 /* Returns the package name of the konsolenfisch package. */
-const char *package (void);
+const char *package(void);
 
 /* Returns the bug report address for the konsolenfisch package. */
-const char *bugreport (void);
+const char *bugreport(void);
 
 /* Returns the license information for the konsolenfisch package. */
-const char *license (void);
+const char *license(void);
 
 /* Returns the help text for the konsolenfisch package. */
-const char *help (void);
+const char *help(void);
 
 #endif /* INFO_H */

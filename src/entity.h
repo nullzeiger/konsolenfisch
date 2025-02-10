@@ -33,12 +33,11 @@
 #define ROWS 10
 #define COLS 10
 
-struct Fish
-{
-  char fish_entity;
-  const char *name;
-  int x;
-  int y;
+struct Fish {
+	char fish_entity;
+	const char *name;
+	int x;
+	int y;
 };
 
 #endif /* ENTITY_H */

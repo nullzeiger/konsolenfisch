@@ -18,6 +18,6 @@
 #ifndef LUASCRIPT_H
 #define LUASCRIPT_H
 
-int load_lua_script (const char *scriptname);
+int load_lua_script(const char *scriptname);
 
 #endif

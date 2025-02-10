@@ -22,12 +22,12 @@
 #include "entity.h"
 
 /* Returns a greeting string including a fish name. */
-const char *hello_fish (void);
+const char *hello_fish(void);
 
 /* Create aquarium */
-char *create_aquarium (void);
+char *create_aquarium(void);
 
 /* Print aquarium */
-void print_aquarium (char *aquarium, const char *, struct Fish);
+void print_aquarium(char *aquarium, const char *, struct Fish);
 
 #endif /* TERMINAL_H */

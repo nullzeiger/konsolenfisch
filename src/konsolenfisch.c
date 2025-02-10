@@ -22,10 +22,9 @@
 
 /* Main function of the program.
  * Parsing input user. */
-int
-main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-  parsing (argc, argv);
+	parsing(argc, argv);
 
-  return 0;
+	return 0;
 }

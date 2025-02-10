@@ -45,13 +45,12 @@
 #define CLEAR       "\033[2J\033[H"
 
 /* Associating a name with a color code */
-struct color_map
-{
-  const char *name;
-  const char *code;
+struct color_map {
+	const char *name;
+	const char *code;
 };
 
 /* Convert color to ansi macro */
-const char *convert_color_to_ansi (const char *color);
+const char *convert_color_to_ansi(const char *color);
 
 #endif /* COLORS_H */
